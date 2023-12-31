@@ -35,7 +35,7 @@ class LoginForm extends Component {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
-
+  try{
     const response = await fetch(url, options)
     const data = await response.json()
 
@@ -44,6 +44,10 @@ class LoginForm extends Component {
     } else {
       this.onFailureSubmit(data.error_msg)
     }
+  } catch(error){
+    console.error(' Error during Login API Call:', error)
+     this.onFailureSubmit(data.error_msg)
+  }
   }
 
   render() {
